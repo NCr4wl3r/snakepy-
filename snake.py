@@ -18,10 +18,22 @@ class Snake:
         return snake_body
 
     def move(self):
-        for index in range(len(self.snake)-1, 0, -1):
+        for index in range(len(self.snake) - 1, 0, -1):
             # move every section to occupy the place of the next one
             new_position = self.snake[index - 1].pos()
             self.snake[index].goto(new_position)
 
         # move the head fo the snake 20 pixels to move forward
         self.snake[0].forward(MOVE_DISTANCE)
+
+    def up(self):
+        self.snake[0].setheading(90)
+
+    def down(self):
+        self.snake[0].setheading(270)
+
+    def left(self):
+        self.snake[0].setheading(180)
+
+    def right(self):
+        self.snake[0].setheading(0)
