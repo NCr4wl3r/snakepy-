@@ -14,13 +14,10 @@ snake = Snake()
 game_is_on = True
 
 
-counter = 0
-
 while game_is_on:
     screen.update()
-    counter += 1
-    snake.move_snake()
     time.sleep(0.5)
+    snake.move()
 
 
 screen.exitonclick()
