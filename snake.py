@@ -11,16 +11,20 @@ class Snake:
     def __init__(self) -> None:
         self.segments = []
         for ind in range(3):
-            self.segment = self.create_body_square(pos_x=-20 * ind, pos_y=0)
-            self.segments.append(self.segment)
+            segment = self.create_body_square((-20 * ind, 0))
+            self.segments.append(segment)
         self.head = self.segments[0]
 
-    def create_body_square(self, pos_x, pos_y):
+    def create_body_square(self, position):
         snake_body = Turtle(shape="square")
         snake_body.color("white")
         snake_body.penup()
-        snake_body.goto(x=pos_x, y=pos_y)
+        snake_body.goto(position)
         return snake_body
+
+    def extend(self):
+        segment = self.create_body_square(self.segments[-1].position())
+        self.segments.append(segment)
 
     def move(self):
         for index in range(len(self.segments) - 1, 0, -1):
