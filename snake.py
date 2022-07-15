@@ -10,10 +10,7 @@ DOWN = 270
 class Snake:
     def __init__(self) -> None:
         self.segments = []
-        for ind in range(3):
-            segment = self.create_body_square((-20 * ind, 0))
-            self.segments.append(segment)
-        self.head = self.segments[0]
+        self.create_snake()
 
     def create_body_square(self, position):
         snake_body = Turtle(shape="square")
@@ -21,6 +18,18 @@ class Snake:
         snake_body.penup()
         snake_body.goto(position)
         return snake_body
+
+    def create_snake(self):
+        for ind in range(3):
+            segment = self.create_body_square((-20 * ind, 0))
+            self.segments.append(segment)
+        self.head = self.segments[0]
+
+    def reset(self):
+        for seg in self.segments:
+            seg.goto(1000, 1000)
+        self.segments.clear()
+        self.create_snake()
 
     def extend(self):
         segment = self.create_body_square(self.segments[-1].position())
